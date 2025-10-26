@@ -1,20 +1,28 @@
 package com.example.firebasetest
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-
+import com.example.firebasetest.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        // Initialize ViewBinding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
+        // Get current user
+        val user = auth.currentUser
+        binding.tvWelcome.text = "Welcome, ${user?.email ?: "user"}"
+        // Logout button click
+        binding.btnLogout.setOnClickListener {
+            auth.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
 }
