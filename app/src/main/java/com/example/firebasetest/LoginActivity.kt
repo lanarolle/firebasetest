@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebaseauthapp.databinding.FragmentLoginActivityBinding
+import com.example.firebasetest.databinding.FragmentLoginActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 class LoginActivity : AppCompatActivity() {
+    // Incorrect import
     private lateinit var auth: FirebaseAuth
+
     private lateinit var binding: FragmentLoginActivityBinding
+
     override fun onStart() {
         super.onStart()
         auth = FirebaseAuth.getInstance()

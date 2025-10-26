@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.firebaseauthapp.databinding.FragmentRegisterActivityBinding
+import com.example.firebasetest.databinding.FragmentRegisterActivityBinding
 import com.google.firebase.auth.FirebaseAuth
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
